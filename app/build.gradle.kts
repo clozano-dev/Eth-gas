@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -8,12 +10,20 @@ android {
     namespace = "com.clozanodev.ethereumgastracker"
     compileSdk = 34
 
+    val properties = Properties()
+    val localPropertiesFile = project.rootProject.file("local.properties")
+    localPropertiesFile.inputStream().use { properties.load(it) }
+
     defaultConfig {
         applicationId = "com.clozanodev.ethereumgastracker"
         minSdk = 26
         targetSdk = 34
         versionCode = 1
         versionName = "1.0"
+
+        android.buildFeatures.buildConfig = true
+
+        buildConfigField("String", "API_KEY", "\"${properties.getProperty("API.KEY")}\"")
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -61,17 +71,21 @@ dependencies {
     implementation(libs.androidx.ui.tooling.preview)
     implementation(libs.androidx.material3)
 
+    implementation(libs.ui.tooling)
+    implementation(libs.androidx.material)
+
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
 
     implementation (libs.androidx.navigation.compose)
 
-    implementation (libs.retrofit)
-    implementation (libs.converter.gson)
+    implementation ("com.squareup.retrofit2:retrofit:2.9.0")
+    implementation ("com.squareup.retrofit2:converter-gson:2.9.0")
 
     implementation (libs.androidx.work.runtime)
     implementation (libs.androidx.hilt.navigation.compose)
     implementation (libs.hilt.android)
+    implementation(libs.androidx.runtime.livedata)
     kapt (libs.hilt.android.compiler)
 
     implementation (libs.kotlinx.coroutines.core)

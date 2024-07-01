@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">EthereumGasTracker</string>
+    <string name="gas_cost">Gas Cost</string>
 </resources>
