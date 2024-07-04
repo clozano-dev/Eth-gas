@@ -7,11 +7,18 @@ import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.work.Constraints
+import androidx.work.ExistingPeriodicWorkPolicy
+import androidx.work.NetworkType
+import androidx.work.PeriodicWorkRequestBuilder
+import androidx.work.WorkManager
 import com.clozanodev.ethereumgastracker.data.repository.GasRepository
 import com.clozanodev.ethereumgastracker.ui.navigation.MainScreen
 import com.clozanodev.ethereumgastracker.ui.theme.EthereumGasTrackerTheme
 import com.clozanodev.ethereumgastracker.viewmodel.GasViewModel
 import com.clozanodev.ethereumgastracker.viewmodel.GasViewModelFactory
+import com.clozanodev.ethereumgastracker.worker.GasPriceWorker
+import java.util.concurrent.TimeUnit
 
 class MainActivity : ComponentActivity() {
 
@@ -26,6 +33,24 @@ class MainActivity : ComponentActivity() {
                 MainScreen(viewModel)
             }
         }
+
+        periodicWorkRequest()
+    }
+
+    private fun periodicWorkRequest() {
+        val workRequest = PeriodicWorkRequestBuilder<GasPriceWorker>(15, TimeUnit.MINUTES)
+            .setConstraints(
+                Constraints.Builder()
+                    .setRequiredNetworkType(NetworkType.CONNECTED)
+                    .build()
+            )
+            .build()
+
+        WorkManager.getInstance(applicationContext).enqueueUniquePeriodicWork(
+            "GasPriceWorker",
+            ExistingPeriodicWorkPolicy.KEEP,
+            workRequest
+        )
     }
 }
 
