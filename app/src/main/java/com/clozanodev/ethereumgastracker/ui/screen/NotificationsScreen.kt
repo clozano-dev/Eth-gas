@@ -87,6 +87,7 @@ fun NotificationsScreen(
                 onClick = {
                     val lowerLimitValue = lowerLimit.toIntOrNull() ?: 0
                     SharedPreferencesManager.saveLowerLimit(context, lowerLimitValue)
+                    viewModel.saveLowerLimit(lowerLimitValue)
                     hideSoftKeyboard(context)
                 }, modifier = Modifier
                     .weight(1f)
@@ -119,6 +120,7 @@ fun NotificationsScreen(
                 onClick = {
                     val upperLimitValue = upperLimit.toIntOrNull() ?: 0
                     SharedPreferencesManager.saveUpperLimit(context, upperLimitValue)
+                    viewModel.saveUpperLimit(upperLimitValue)
                     hideSoftKeyboard(context)
                 }, modifier = Modifier
                     .weight(1f)

@@ -6,6 +6,7 @@ import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.material.icons.filled.Info
@@ -28,8 +29,8 @@ fun MainScreen(viewModel: GasViewModel) {
         topBar = {
             TopAppBar(
                 title = { Text("Ethereum Gas Tracker") },
-                backgroundColor = MaterialTheme.colors.primary,
-                contentColor = MaterialTheme.colors.onPrimary,
+                backgroundColor = colors.primary,
+                contentColor = colors.onPrimary,
                 elevation = 10.dp
             )
         }

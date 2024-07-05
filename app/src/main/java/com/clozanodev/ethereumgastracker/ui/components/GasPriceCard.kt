@@ -11,6 +11,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
+import androidx.compose.material.MaterialTheme.colors
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -20,8 +21,8 @@ import androidx.compose.ui.unit.dp
 @Composable
 fun GasPriceCard(tittle: String, price: String, modifier: Modifier = Modifier) {
     Card(
-        backgroundColor = MaterialTheme.colors.primary,
-        contentColor = MaterialTheme.colors.onPrimary,
+        backgroundColor = colors.primary,
+        contentColor = colors.onPrimary,
         border = BorderStroke(4.dp, MaterialTheme.colors.secondary),
         shape = MaterialTheme.shapes.small,
         modifier = Modifier
@@ -36,12 +37,12 @@ fun GasPriceCard(tittle: String, price: String, modifier: Modifier = Modifier) {
         ) {
             Text(
                 text = tittle,
-                style = MaterialTheme.typography.h6.copy(fontWeight = FontWeight.Bold, color = MaterialTheme.colors.onPrimary),
+                style = MaterialTheme.typography.h6,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             Text(
                 text = price,
-                style = MaterialTheme.typography.h5.copy(fontWeight = FontWeight.Bold, color = MaterialTheme.colors.onPrimary)
+                style = MaterialTheme.typography.h5
             )
         }
     }
