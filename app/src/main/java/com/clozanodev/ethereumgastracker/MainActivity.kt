@@ -1,5 +1,7 @@
 package com.clozanodev.ethereumgastracker
 
+import android.app.NotificationChannel
+import android.app.NotificationManager
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -23,7 +25,12 @@ import java.util.concurrent.TimeUnit
 class MainActivity : ComponentActivity() {
 
     private val repository by lazy { GasRepository() }
-    private val viewModel: GasViewModel by viewModels { GasViewModelFactory(application, repository) }
+    private val viewModel: GasViewModel by viewModels {
+        GasViewModelFactory(
+            application,
+            repository
+        )
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,7 +42,21 @@ class MainActivity : ComponentActivity() {
             }
         }
 
+        createNotificationChannel()
+
         periodicWorkRequest()
+    }
+
+    private fun createNotificationChannel() {
+        val name = "Gas Price Alerts"
+        val descriptionText = "Notifications for gas price alerts"
+        val importance = NotificationManager.IMPORTANCE_DEFAULT
+        val channel = NotificationChannel("GAS_PRICE_ALERTS", name, importance).apply {
+            description = descriptionText
+        }
+        val notificationManager: NotificationManager =
+            getSystemService(NOTIFICATION_SERVICE) as NotificationManager
+        notificationManager.createNotificationChannel(channel)
     }
 
     private fun periodicWorkRequest() {
@@ -54,7 +75,6 @@ class MainActivity : ComponentActivity() {
         )
     }
 }
-
 
 
 @Preview(showBackground = true)
