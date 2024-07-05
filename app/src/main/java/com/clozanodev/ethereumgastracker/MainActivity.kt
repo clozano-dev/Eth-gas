@@ -23,7 +23,7 @@ import java.util.concurrent.TimeUnit
 class MainActivity : ComponentActivity() {
 
     private val repository by lazy { GasRepository() }
-    private val viewModel: GasViewModel by viewModels { GasViewModelFactory(repository) }
+    private val viewModel: GasViewModel by viewModels { GasViewModelFactory(application, repository) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -1,8 +1,10 @@
 package com.clozanodev.ethereumgastracker.ui.navigation
 
 
+
+import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
-//import androidx.compose.material3.*
+import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
@@ -12,19 +14,17 @@ import androidx.compose.runtime.*
 import androidx.navigation.NavController
 import androidx.navigation.compose.*
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.clozanodev.ethereumgastracker.data.repository.GasRepository
 import com.clozanodev.ethereumgastracker.viewmodel.GasViewModel
 import com.clozanodev.ethereumgastracker.ui.screen.HomeScreen
 import com.clozanodev.ethereumgastracker.ui.screen.InfoScreen
 import com.clozanodev.ethereumgastracker.ui.screen.NotificationsScreen
-import com.clozanodev.ethereumgastracker.ui.theme.EthereumGasTrackerTheme
 
 @Composable
 fun MainScreen(viewModel: GasViewModel) {
     val navController = rememberNavController()
-    Scaffold(
+
+    Scaffold(modifier = Modifier.statusBarsPadding().navigationBarsPadding(),
         topBar = {
             TopAppBar(
                 title = { Text("Ethereum Gas Tracker") },
@@ -32,10 +32,11 @@ fun MainScreen(viewModel: GasViewModel) {
                 contentColor = MaterialTheme.colors.onPrimary,
                 elevation = 10.dp
             )
-        },
+        }
+        ,
         bottomBar = {
-        BottomNavigationBar(navController)
-    }) { innerPadding ->
+            BottomNavigationBar(navController)
+        }) { innerPadding ->
         NavHost(
             navController, startDestination = "home", modifier = Modifier.padding(innerPadding)
         ) {
@@ -45,6 +46,7 @@ fun MainScreen(viewModel: GasViewModel) {
         }
     }
 }
+
 
 @Composable
 fun BottomNavigationBar(navController: NavController) {
@@ -101,9 +103,3 @@ fun currentRoute(navController: NavController): String? {
     return navBackStackEntry?.destination?.route
 }
 
-@Preview(showBackground = true)
-@Composable
-fun DefaultPreview() {
-    EthereumGasTrackerTheme {
-    MainScreen(viewModel = GasViewModel(GasRepository()))
-}}

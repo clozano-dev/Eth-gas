@@ -2,4 +2,12 @@
     <string name="app_name">EthereumGasTracker</string>
     <string name="gas_cost">Gas Cost</string>
     <string name="current_eth_price">"Current ETH price: "</string>
+    <string name="notifications">Notifications</string>
+    <string name="lower_limit">Lower limit</string>
+    <string name="set_limits">Set limits</string>
+    <string name="upper_limit">Upper limit</string>
+    <string name="set">Set</string>
+    <string name="about">About Ethereum gas price App</string>
+    <string name="about_text_1">"Welcome to our Ethereum Gas Price App. Our mission is to provide you with real-time updates on Ethereum gas prices. Whether you're sending ETH, interacting with a DApp, or trading on a DEX, knowing the current gas prices can optimize your experience and save your money"</string>
+    <string name="about_text_2">"Thank you for choosing our app and joining us. You support drives us to continually improve. If you have any feedback or suggestion, please don't hesitate to reach out. Happy gas tracking!"</string>
 </resources>
