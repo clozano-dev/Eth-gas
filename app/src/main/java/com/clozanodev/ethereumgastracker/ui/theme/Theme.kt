@@ -12,7 +12,7 @@ private val DarkColorScheme = darkColorScheme(
     primary = Color(0xFF454a74),
     secondary = ethereumMidPurple,
     tertiary = ethereumLightPurple,
-    background = Color(0xFFFFFBFE),
+    background = ethereumLightPurple,
     surface = ethereumLightPurple,
     onPrimary = Color.White,
     onSecondary = Color.White,
@@ -22,10 +22,10 @@ private val DarkColorScheme = darkColorScheme(
 )
 
 private val LightColorScheme = lightColorScheme(
-    primary = Color(0xFF454a74),
-    secondary = Color(0xFF636890),
+    primary = ethereumDarkPurple,
+    secondary = ethereumMidPurple,
     tertiary = Pink40,
-    background = Color(0xFFFFFBFE),
+    background = ethereumLightPurple,
     surface = Color(0xFFFFFBFE),
     onPrimary = Color.White,
     onSecondary = Color.White,

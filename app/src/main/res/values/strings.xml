@@ -7,7 +7,8 @@
     <string name="set_limits">Set limits</string>
     <string name="upper_limit">Upper limit</string>
     <string name="set">Set</string>
-    <string name="about">About Ethereum gas price App</string>
+    <string name="about">About ETH gas price App</string>
     <string name="about_text_1">"Welcome to our Ethereum Gas Price App. Our mission is to provide you with real-time updates on Ethereum gas prices. Whether you're sending ETH, interacting with a DApp, or trading on a DEX, knowing the current gas prices can optimize your experience and save your money"</string>
     <string name="about_text_2">"Thank you for choosing our app and joining us. You support drives us to continually improve. If you have any feedback or suggestion, please don't hesitate to reach out. Happy gas tracking!"</string>
+    <string name="ethereum_gas_price_in_gwei">Ethereum gas price in Gwei</string>
 </resources>

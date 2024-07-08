@@ -9,6 +9,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.MaterialTheme.colors
@@ -17,18 +18,22 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.dp
+import com.clozanodev.ethereumgastracker.ui.theme.CustomFont
 
 @Composable
-fun GasPriceCard(tittle: String, price: String, modifier: Modifier = Modifier) {
+fun GasPriceCard(
+    tittle: String,
+    price: String,
+    modifier: Modifier = Modifier) {
     Card(
-        backgroundColor = colors.primary,
-        contentColor = colors.onPrimary,
-        border = BorderStroke(4.dp, MaterialTheme.colors.secondary),
-        shape = MaterialTheme.shapes.small,
+        backgroundColor = Color(0xFFFFFFFF),
+        contentColor = Color(0xFF454a74),
+        border = BorderStroke(4.dp, Color(0xFF8992B1)),
+        shape = CircleShape,
         modifier = Modifier
             .height(180.dp)
-            .padding(8.dp).width(180.dp),
-        elevation = 16.dp
+            .padding(8.dp).width(160.dp),
+        elevation = 8.dp
     ){
         Column(
             modifier = Modifier.fillMaxSize(),
@@ -37,12 +42,16 @@ fun GasPriceCard(tittle: String, price: String, modifier: Modifier = Modifier) {
         ) {
             Text(
                 text = tittle,
-                style = MaterialTheme.typography.h6,
+                fontWeight = FontWeight.Bold,
+                fontFamily = CustomFont,
+                style = MaterialTheme.typography.h5,
                 modifier = Modifier.padding(bottom = 8.dp)
             )
             Text(
                 text = price,
-                style = MaterialTheme.typography.h5
+                fontWeight = FontWeight.Bold,
+                fontFamily = CustomFont,
+                style = MaterialTheme.typography.h3
             )
         }
     }

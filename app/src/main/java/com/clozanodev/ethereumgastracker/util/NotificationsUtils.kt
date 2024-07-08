@@ -37,7 +37,7 @@ object NotificationsUtils {
         ) {
             val builder =
                 NotificationCompat.Builder(context, CHANNEL_ID)
-                    .setSmallIcon(R.drawable.ethereum)
+                    .setSmallIcon(R.drawable.ethereum_home)
                     .setContentTitle(title)
                     .setContentText(message)
                     .setPriority(NotificationCompat.PRIORITY_HIGH)
