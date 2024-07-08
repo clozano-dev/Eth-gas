@@ -38,7 +38,7 @@ class MainActivity : ComponentActivity() {
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
-                Toast.makeText(this, "Notifications enabled", Toast.LENGTH_SHORT).show()
+
             } else {
                 Toast.makeText(this, "Notifications disabled. Please enable them in settings.", Toast.LENGTH_LONG).show()
             }

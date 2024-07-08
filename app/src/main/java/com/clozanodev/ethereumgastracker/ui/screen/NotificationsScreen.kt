@@ -12,6 +12,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material.Surface
 import androidx.compose.material3.Button
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.OutlinedTextField
@@ -24,6 +25,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.input.KeyboardType
@@ -52,89 +54,96 @@ fun NotificationsScreen(
     val savedLowerLimit by viewModel.lowerLimit.observeAsState()
     val savedUpperLimit by viewModel.upperLimit.observeAsState()
 
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .padding(16.dp),
-        horizontalAlignment = Alignment.CenterHorizontally
+    Surface(
+        color = Color(0xFFE0E2EE),
+        modifier = Modifier.fillMaxSize()
     ) {
-        Text(
-            text = stringResource(R.string.notifications),
-            style = MaterialTheme.typography.headlineLarge
-        )
 
-        Spacer(modifier = Modifier.height(16.dp))
-
-        Row(
+        Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
+            horizontalAlignment = Alignment.CenterHorizontally
         ) {
-            OutlinedTextField(
-                value = lowerLimit,
-                onValueChange = { lowerLimit = it },
-                label = { Text(text = stringResource(R.string.lower_limit)) },
-                modifier = Modifier
-                    .weight(2f)
-                    .padding(end = 8.dp)
-                    .align(Alignment.CenterVertically),
-                keyboardOptions = KeyboardOptions.Default.copy(
-                    keyboardType = KeyboardType.Number)
+            Text(
+                text = stringResource(R.string.notifications),
+                style = MaterialTheme.typography.headlineLarge
             )
 
-            Button(
-                onClick = {
-                    val lowerLimitValue = lowerLimit.toIntOrNull() ?: 0
-                    SharedPreferencesManager.saveLowerLimit(context, lowerLimitValue)
-                    viewModel.saveLowerLimit(lowerLimitValue)
-                    hideSoftKeyboard(context)
-                }, modifier = Modifier
-                    .weight(1f)
-                    .align(Alignment.CenterVertically)
-            ) {
-                Text(text = stringResource(R.string.set))
-            }
-        }
+            Spacer(modifier = Modifier.height(16.dp))
 
-        Row(
-            modifier = Modifier
-                .fillMaxWidth()
-                .padding(16.dp),
-            verticalAlignment = Alignment.CenterVertically
-        ) {
-            OutlinedTextField(
-                value = upperLimit,
-                onValueChange = { upperLimit = it },
-                label = { Text(text = stringResource(R.string.upper_limit)) },
+            Row(
                 modifier = Modifier
-                    .weight(2f)
-                    .padding(end = 8.dp)
-                    .align(Alignment.CenterVertically),
-                keyboardOptions = KeyboardOptions.Default.copy(
-                    keyboardType = KeyboardType.Number
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OutlinedTextField(
+                    value = lowerLimit,
+                    onValueChange = { lowerLimit = it },
+                    label = { Text(text = stringResource(R.string.lower_limit)) },
+                    modifier = Modifier
+                        .weight(2f)
+                        .padding(end = 8.dp)
+                        .align(Alignment.CenterVertically),
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        keyboardType = KeyboardType.Number
+                    )
                 )
-            )
 
-            Button(
-                onClick = {
-                    val upperLimitValue = upperLimit.toIntOrNull() ?: 0
-                    SharedPreferencesManager.saveUpperLimit(context, upperLimitValue)
-                    viewModel.saveUpperLimit(upperLimitValue)
-                    hideSoftKeyboard(context)
-                }, modifier = Modifier
-                    .weight(1f)
-                    .align(Alignment.CenterVertically)
-            ) {
-                Text(text = stringResource(R.string.set))
+                Button(
+                    onClick = {
+                        val lowerLimitValue = lowerLimit.toIntOrNull() ?: 0
+                        SharedPreferencesManager.saveLowerLimit(context, lowerLimitValue)
+                        viewModel.saveLowerLimit(lowerLimitValue)
+                        hideSoftKeyboard(context)
+                    }, modifier = Modifier
+                        .weight(1f)
+                        .align(Alignment.CenterVertically)
+                ) {
+                    Text(text = stringResource(R.string.set))
+                }
             }
+
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(16.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OutlinedTextField(
+                    value = upperLimit,
+                    onValueChange = { upperLimit = it },
+                    label = { Text(text = stringResource(R.string.upper_limit)) },
+                    modifier = Modifier
+                        .weight(2f)
+                        .padding(end = 8.dp)
+                        .align(Alignment.CenterVertically),
+                    keyboardOptions = KeyboardOptions.Default.copy(
+                        keyboardType = KeyboardType.Number
+                    )
+                )
+
+                Button(
+                    onClick = {
+                        val upperLimitValue = upperLimit.toIntOrNull() ?: 0
+                        SharedPreferencesManager.saveUpperLimit(context, upperLimitValue)
+                        viewModel.saveUpperLimit(upperLimitValue)
+                        hideSoftKeyboard(context)
+                    }, modifier = Modifier
+                        .weight(1f)
+                        .align(Alignment.CenterVertically)
+                ) {
+                    Text(text = stringResource(R.string.set))
+                }
+            }
+
+            Spacer(modifier = Modifier.height(16.dp))
+
+
+            Text(text = "Lower limit selected: ${if (savedLowerLimit != 0) savedLowerLimit.toString() + " gwei" else "Select lower limit"}")
+            Text(text = "Upper limit selected: ${if (savedUpperLimit != 0) savedUpperLimit.toString() + " gwei" else "Select upper limit"}")
         }
-
-        Spacer(modifier = Modifier.height(16.dp))
-
-
-        Text(text = "Lower limit selected: ${if (savedLowerLimit != 0) savedLowerLimit.toString() + " gwei" else "Select lower limit"}")
-        Text(text = "Upper limit selected: ${if (savedUpperLimit != 0) savedUpperLimit.toString() + " gwei" else "Select upper limit"}")
     }
 
 }
