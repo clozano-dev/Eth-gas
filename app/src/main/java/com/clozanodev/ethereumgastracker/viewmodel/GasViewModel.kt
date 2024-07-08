@@ -44,10 +44,10 @@ class GasViewModel(application: Application, private val repository: GasReposito
 
                 if (proposeGasPrice != null) {
                     if (proposeGasPrice < lowerLimitValue && lowerLimitValue != 0) {
-                        sendNotification("Gas price dropped below $lowerLimitValue Gwei")
+                        //sendNotification("Gas price dropped below $lowerLimitValue Gwei")
                         clearLowerLimit()
                     } else if (proposeGasPrice > upperLimitValue && upperLimitValue != 0) {
-                        sendNotification("Gas price exceeded $upperLimitValue Gwei")
+                        //sendNotification("Gas price exceeded $upperLimitValue Gwei")
                         clearUpperLimit()
                     }
                 }
@@ -58,7 +58,7 @@ class GasViewModel(application: Application, private val repository: GasReposito
         }
     }
 
-    @SuppressLint("MissingPermission")
+/*    @SuppressLint("MissingPermission")
     private fun sendNotification(message: String) {
         val builder = NotificationCompat.Builder(getApplication(), "GAS_PRICE_ALERTS")
             .setSmallIcon(R.drawable.ethereum)
@@ -69,7 +69,7 @@ class GasViewModel(application: Application, private val repository: GasReposito
         with(NotificationManagerCompat.from(getApplication())) {
             notify(1, builder.build())
         }
-    }
+    }*/
 
     fun saveUpperLimit(upperLimit: Int) {
         SharedPreferencesManager.saveUpperLimit(getApplication(), upperLimit)
